@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unique Morse Code Representations</title>
+</head>
+<body>
+    <input type="text" id="wordInput" placeholder="Enter a word">
+    <button onclick="calculateMorse()">Calculate Morse Code</button>
+    <div id="morseResult"></div>
+    <div id="uniqueResult"></div>
+
+    <script>
+        const morseCodeMap = {
+            "a": ".-", "b": "-...", "c": "-.-.", "d": "-..", "e": ".", "f": "..-.",
+            "g": "--.", "h": "....", "i": "..", "j": ".---", "k": "-.-", "l": ".-..",
+            "m": "--", "n": "-.", "o": "---", "p": ".--.", "q": "--.-", "r": ".-.",
+            "s": "...", "t": "-", "u": "..-", "v": "...-", "w": ".--", "x": "-..-",
+            "y": "-.--", "z": "--.."
+        };
+
+        function convertToMorse(word) {
+            return [...word].map(char => morseCodeMap[char]).join('');
+        }
+
+        function calculateMorse() {
+            const word = document.getElementById('wordInput').value.trim().toLowerCase();
+            const morse = convertToMorse(word);
+            document.getElementById('morseResult').textContent = `Morse Code: ${morse}`;
+            const unique = new Set([morse]).size === 1;
+            document.getElementById('uniqueResult').textContent = `The Morse code representation of "${word}" is unique: ${unique}`;
+        }
+    </script>
+</body>
+</html>
